@@ -28,6 +28,7 @@ function autenticar(req, res) {
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha,
+                                        cpf: resultadoAutenticar[0].cpf,
                                         aquarios: resultadoAquarios
                                     });
                                 } else {
@@ -56,6 +57,7 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var cpf = req.body.cpfServer;
     var fkEmpresa = req.body.idEmpresaVincularServer;
 
     // Faça as validações dos valores
@@ -70,7 +72,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
+        usuarioModel.cadastrar(nome, email, senha, fkEmpresa,cpf)
             .then(
                 function (resultado) {
                     res.json(resultado);

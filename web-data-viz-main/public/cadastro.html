@@ -66,6 +66,10 @@
             <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
           </div>
           <div class="campo">
+            <span>CPF:</span>
+            <input id="cpf_input" type="number" placeholder="Seu CPF" />
+          </div>
+          <div class="campo">
             <span>Senha:</span>
             <input id="senha_input" type="password" placeholder="******" />
           </div>
@@ -109,15 +113,19 @@
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
+    var cpfVar = cpf_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
     var codigoVar = codigo_input.value;
     var idEmpresaVincular
 
-    // Verificando se há algum campo em branco
-    if (
+    if(nomeVar.length > 1 && emailVar.includes('@') && emailVar.includes('.') && senhaVar.length > 6 && senhaVar == confirmacaoSenhaVar && cpfVar.length == 11){
+    // Validando Campos
+         // Verificando se há algum campo em branco
+         if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
+      cpfVar == "" ||
       confirmacaoSenhaVar == "" ||
       codigoVar == ""
     ) {
@@ -155,6 +163,7 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
+        cpfServer: cpfVar,
         senhaServer: senhaVar,
         idEmpresaVincularServer: idEmpresaVincular
       }),
@@ -183,8 +192,11 @@
         finalizarAguardar();
       });
 
-    return false;
-  }
+    return false; 
+    }else{
+      alert('Insira os Dados Corretamente!!')
+    }
+    }
 
   // Listando empresas cadastradas 
   function listar() {
